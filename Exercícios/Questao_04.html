@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 04 - Classe Aluno</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #2F9E41;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #D7E087;
+            padding-bottom: 10px;
+        }
+        
+        .subtitulo {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .info-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2F9E41;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .info-box h3 {
+            color: #2F9E41;
+            margin-bottom: 10px;
+        }
+        
+        .formula {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .alunos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .aluno-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .aluno-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .aluno-card h3 {
+            color: #2F9E41;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .aluno-card p {
+            margin: 8px 0;
+            color: #333;
+        }
+        
+        .status-aprovado {
+            color: #2F9E41;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .status-reprovado {
+            color: #CD181D;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .nota {
+            font-weight: bold;
+            color: #764ba2;
+        }
+        
+        .info-footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .btn-console {
+            background-color: #2F9E41;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-console:hover {
+            background-color: #CD181D;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <!-- Incluindo o arquivo JavaScript -->
+    <script type="text/javascript" src="Questao_04.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🏫 Questão 04</h1>
+        <div class="subtitulo">Sistema de Gerenciamento de Alunos - Classe Aluno</div>
+        
+        <div class="info-box">
+            <h3>📚 Sobre a Classe Aluno</h3>
+            <p><strong>Propriedades:</strong> primeiroNome, segundoNome, primeiraNota, segundaNota</p>
+            <p><strong>Métodos:</strong></p>
+            <ul style="margin-left: 30px; margin-top: 10px;">
+                <li><strong>nomeCompleto():</strong> Retorna o nome completo do aluno</li>
+                <li><strong>media():</strong> Calcula a média ponderada (Primeira Nota × 0,6 + Segunda Nota × 0,4)</li>
+                <li><strong>situacao():</strong> Retorna "Aprovado" se média > 6, ou "Reprovado"</li>
+            </ul>
+        </div>
+        
+        <div class="formula">
+            📐 Fórmula da Média Ponderada: <strong>Média = (Nota1 × 0,6) + (Nota2 × 0,4)</strong>
+        </div>
+        
+        <h2 style="color: #2F9E41; margin: 20px 0 10px 0;">📊 Alunos Matriculados</h2>
+        
+        <div class="alunos-grid" id="alunosGrid">
+            <!-- Os dados serão preenchidos via JavaScript -->
+        </div>
+        
+        <div class="info-footer">
+            <p>✅ Os dados completos dos 5 alunos foram processados e exibidos em janelas de alerta.</p>
+            <p>📊 Verifique as janelas de alerta para ver:</p>
+            <ul style="display: inline-block; text-align: left; margin-top: 10px;">
+                <li>Nome completo de cada aluno</li>
+                <li>Notas individuais</li>
+                <li>Média ponderada calculada</li>
+                <li>Situação (Aprovado/Reprovado)</li>
+                <li>Estatísticas gerais da turma</li>
+            </ul>
+            <br>
+            <button class="btn-console" onclick="mostrarDadosAlunos()">🔄 Ver Dados Novamente</button>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                💡 <em>Dica: Pressione F12 e veja o console do navegador para mais detalhes!</em>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Função para exibir os cards dos alunos na página HTML
+        function exibirCardsAlunos() {
+            const grid = document.getElementById('alunosGrid');
+            grid.innerHTML = '';
+            
+            alunos.forEach((aluno, index) => {
+                const media = aluno.media();
+                const situacao = aluno.situacao();
+                const statusClass = situacao === 'Aprovado' ? 'status-aprovado' : 'status-reprovado';
+                
+                const card = document.createElement('div');
+                card.className = 'aluno-card';
+                card.innerHTML = `
+                    <h3>👨‍🎓 ${aluno.nomeCompleto()}</h3>
+                    <p>📝 <strong>Primeira Nota:</strong> <span class="nota">${aluno.primeiraNota}</span></p>
+                    <p>📝 <strong>Segunda Nota:</strong> <span class="nota">${aluno.segundaNota}</span></p>
+                    <p>📊 <strong>Média:</strong> ${media.toFixed(2)}</p>
+                    <p class="${statusClass}">✅ <strong>Situação:</strong> ${situacao}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        // Aguarda o DOM carregar para exibir os cards
+        document.addEventListener('DOMContentLoaded', exibirCardsAlunos);
+    </script>
+</body>
+</html>
